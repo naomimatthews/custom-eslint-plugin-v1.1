@@ -23,7 +23,6 @@ ruleTester.run('xss-vulnerabilities', rule, {
 
 console.log(ruleTester.results);
 
-// Handle potential errors
 ruleTester.runner.on('error', (error) => {
   console.error('Error running tests:', error);
 });
