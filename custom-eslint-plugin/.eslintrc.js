@@ -1,25 +1,21 @@
-module.exports = {
-    env: {
-        browser: true,
-        commonjs: true,
-        es2021: true
-    },
-    plugins: ['security'],
-    extends: 'standard',
-    overrides: [
-        {
-            env: {
-                node: true
-            },
-            files: [
-                '.eslintrc.{js,cjs'
-            ],
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import securityPlugin from 'eslint-plugin-security';
+
+export default [
+    pluginJs.configs.recommended,
+    {
+        files: ["**/*.js"],
+        languageOptions: {
+            ecmaVersion: 2021,
+            sourceType: "module",
+            globals: globals.browser
+        },
+        plugins: {
+            security: securityPlugin
+        },
+        rules: {
+            "security/xss-vulnerabilities": "error"
         }
-    ],
-    parserOptions: {
-        ecmaVersion: 'latest'
-    },
-    rules: {
-        "security/xss-vulnerabilities": "error"
     }
-}
+];
