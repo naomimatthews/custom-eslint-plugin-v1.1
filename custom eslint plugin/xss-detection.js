@@ -1,1 +1,0 @@
-const REMOVE_USER_BUTTON = '[data-testid=remove-user-button]'
