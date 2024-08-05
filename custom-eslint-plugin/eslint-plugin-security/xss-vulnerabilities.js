@@ -1,29 +1,29 @@
-module.exports = {
+export default {
   meta: {
-      type: 'problem',
-      docs: {
-          description: 'Disallow potential XSS vulnerabilities',
-          category: 'Security',
-          recommended: true
-      },
-      schema: [] // no options
+    type: 'problem',
+    messages: {
+      dangerouslySetInnerHTML: 'Use of dangerouslySetInnerHTML is potentially dangerous.',
+      innerHTMLAssignment: 'Assignment to innerHTML is potentially dangerous.'
+    }
   },
   create(context) {
-      return {
-          JSXAttribute(node) {
-              if (
-                  (node.name.name === 'dangerouslySetInnerHTML') ||
-                  (node.name.name === 'innerHTML')
-              ) {
-                  context.report({
-                      node,
-                      message: 'Avoid using `{{name}}` to prevent XSS vulnerabilities',
-                      data: {
-                          name: node.name.name
-                      }
-                  });
-              }
-          }
-      };
+    return {
+      JSXAttribute(node) {
+        if (node.name.name === 'dangerouslySetInnerHTML') {
+          context.report({
+            node,
+            messageId: 'dangerouslySetInnerHTML'
+          });
+        }
+      },
+      AssignmentExpression(node) {
+        if (node.left.property && node.left.property.name === 'innerHTML') {
+          context.report({
+            node,
+            messageId: 'innerHTMLAssignment'
+          });
+        }
+      }
+    };
   }
 };
