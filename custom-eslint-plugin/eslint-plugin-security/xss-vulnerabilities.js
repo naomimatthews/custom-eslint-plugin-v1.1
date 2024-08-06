@@ -1,29 +1,26 @@
-export default {
+module.exports = {
   meta: {
     type: 'problem',
-    messages: {
-      dangerouslySetInnerHTML: 'Use of dangerouslySetInnerHTML is potentially dangerous.',
-      innerHTMLAssignment: 'Assignment to innerHTML is potentially dangerous.'
-    }
+    docs: {
+      description: 'disallow usage of innerHTML and dangerouslySetInnerHTML',
+      category: 'Possible Errors',
+      recommended: true,
+    },
+    schema: [], 
   },
   create(context) {
     return {
-      JSXAttribute(node) {
-        if (node.name.name === 'dangerouslySetInnerHTML') {
+      MemberExpression(node) {
+        if (
+          node.property &&
+          (node.property.name === 'innerHTML' || node.property.name === 'dangerouslySetInnerHTML')
+        ) {
           context.report({
             node,
-            messageId: 'dangerouslySetInnerHTML'
+            message: `Do not use ${node.property.name}`,
           });
         }
       },
-      AssignmentExpression(node) {
-        if (node.left.property && node.left.property.name === 'innerHTML') {
-          context.report({
-            node,
-            messageId: 'innerHTMLAssignment'
-          });
-        }
-      }
     };
-  }
+  },
 };
