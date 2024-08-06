@@ -1,26 +1,28 @@
 {
-  "name": "custom-eslint-plugin",
-  "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "mocha xss-vulnerabilities.test.mjs",
-    "lint": "eslint xss-vulnerabilities.test.mjs"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@babel/eslint-parser": "^7.25.1",
-    "@eslint/js": "^9.8.0",
-    "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@typescript-eslint/parser": "^8.0.0",
-    "chai": "^5.1.1",
-    "eslint": "^9.8.0",
-    "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-security": "file:eslint-plugin-security",
-    "globals": "^15.9.0",
-    "mocha": "^10.7.0"
-  }
+ "name": "custom-eslint-plugin",
+ "version": "1.1.0",
+ "main": "lib/index.js",
+ "type": "module",
+ "scripts": {
+  "lint": "eslint .",
+  "test": "mocha --require @babel/register --require esm test/**/*.test.mjs"
+ },
+ "keywords": [],
+ "author": "",
+ "license": "ISC",
+ "description": "",
+ "devDependencies": {
+  "@babel/eslint-parser": "^7.25.1",
+  "@babel/register": "^7.24.6",
+  "@eslint/js": "^9.8.0",
+  "@typescript-eslint/eslint-plugin": "^8.0.0",
+  "@typescript-eslint/parser": "^8.0.0",
+  "chai": "^5.1.1",
+  "eslint": "^9.8.0",
+  "eslint-plugin-react": "^7.35.0",
+  "eslint-plugin-security": "file:eslint-plugin-security",
+  "esm": "^3.2.25",
+  "globals": "^15.9.0",
+  "mocha": "^10.7.0"
+ }
 }

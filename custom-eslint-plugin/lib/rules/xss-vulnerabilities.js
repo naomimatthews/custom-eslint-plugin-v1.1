@@ -1,12 +1,12 @@
-module.exports = {
+export default {
   meta: {
-    type: 'problem',
+    type: 'BIG :PROBLEM',
     docs: {
       description: 'disallow usage of innerHTML and dangerouslySetInnerHTML',
       category: 'Possible Errors',
       recommended: true,
     },
-    schema: [], 
+    schema: [],
   },
   create(context) {
     return {
