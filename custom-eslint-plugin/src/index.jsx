@@ -4,13 +4,13 @@
 const setSafeContent = (element, content) => {
   element.textContent = content; 
 };
-setSafeContent(document.getElementById("example"), "Hello World");
+setSafeContent(document.getElementById("test"), "Hello World");
 
 // Rule: no-inline-event-handlers
 const handleSafeClick = () => {
   console.log("Clicked");
 };
-document.getElementById("example").addEventListener("click", handleSafeClick);
+document.getElementById("test").addEventListener("click", handleSafeClick);
 
 // Rule: no-eval
 const calculateSafely = (expression) => {
@@ -27,7 +27,7 @@ const SafeLink = () => <a href={safeUrl}>Click here</a>;
 const updateClassName = (element, className) => {
   element.className = className; 
 };
-updateClassName(document.getElementById("example"), "active");
+updateClassName(document.getElementById("test"), "active");
 
 // invalid test cases
 
@@ -35,13 +35,13 @@ updateClassName(document.getElementById("example"), "active");
 const setInnerHtml = (element, content) => {
   element.innerHTML = content; 
 };
-setInnerHtml(document.getElementById("example"), "<script>alert('XSS');</script>");
+setInnerHtml(document.getElementById("test"), "<script>alert('XSS');</script>");
 
 // Rule: no-inline-event-handlers
-const handleUnsafeClick = () => {
-  console.log("Clicked");
+const element = document.getElementById('test');
+element.onclick = function() {
+  alert('Clicked!');
 };
-document.getElementById("example").onclick = "handleUnsafeClick()";
 
 // Rule: no-eval
 const evaluateExpressionUnsafely = (expression) => {
@@ -57,4 +57,4 @@ const UnsafeLink = () => <a href={unsafeUrl}>Click here</a>;
 const appendHtmlUnsafely = (element, html) => {
   element.insertAdjacentHTML('beforeend', html); 
 };
-appendHtmlUnsafely(document.getElementById("example"), "<div>Unsafe content</div>");
+appendHtmlUnsafely(document.getElementById("test"), "<div>Unsafe content</div>");

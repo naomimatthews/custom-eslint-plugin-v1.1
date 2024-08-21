@@ -1,6 +1,8 @@
 {
-  "name": "custom-eslint-plugin",
-  "private": true,
+  "name": "eslint-plugin-react-security",
+  "version": "1.0.0",
+  "description": "An ESLint plugin for enhancing React security.",
+  "private": false,
   "scripts": {
     "lint": "eslint .",
     "lint:report": "npm run lint && echo 'Linting completed successfully: No issues found in valid test cases.'"
@@ -8,7 +10,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.8.0",
-    "eslint": "^9.8.0",
+    "eslint": "^9.9.0",
     "eslint-plugin-react": "^7.35.0",
     "globals": "^15.9.0"
   }

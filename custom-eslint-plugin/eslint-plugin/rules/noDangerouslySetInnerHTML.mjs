@@ -1,15 +1,17 @@
 const noDangerouslySetInnerHTML = (context) => {
-    return {
-      JSXAttribute: (node) => {
-        if (node.name.name === 'dangerouslySetInnerHTML') {
-          context.report({
-            node,
-            message: 'Avoid using dangerouslySetInnerHTML to prevent XSS vulnerabilities.',
-          });
-        }
-      },
-    };
+  return {
+    AssignmentExpression: (node) => {
+      if (
+        node.left.type === 'MemberExpression' &&
+        node.left.property.name === 'innerHTML'
+      ) {
+        context.report({
+          node,
+          message: `Avoid assigning directly to 'innerHTML' as it can introduce XSS vulnerabilities. Consider using 'textContent' or a safer method.`,
+        });
+      }
+    },
   };
-  
-  export default noDangerouslySetInnerHTML;
-  
+};
+
+export default noDangerouslySetInnerHTML;
